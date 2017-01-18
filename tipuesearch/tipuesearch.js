@@ -138,8 +138,15 @@
             } else {
                 d = d.substring(1, d.length - 1);
             }
-
-            if (d.length >= set.minimumLength) {
+            var len = d.length;
+            var blen = 0;
+            for(i=0; i<len; i++) {
+                if ((d.charCodeAt(i) & 0xff00) != 0) {
+                    blen ++;
+                }
+                blen ++;
+            }
+            if (blen >= set.minimumLength) {
                 if (standard) {
                     if (replace) {
                         var d_r = d;

@@ -41,14 +41,12 @@ class Builder
      */
     protected static function getName($path)
     {
-        // ['dir' => 1, 'basename' => 2, 'filename' => 3, 'extension' => 5]
-        preg_match('%^(.*?)[\\\\/]*(([^/\\\\]*?)(\.([^\.\\\\/]+?)|))[\\\\/\.]*$%im', $path, $m);
-
-        if (!isset($m[3])) {
-            throw new RuntimeException('Name not found');
-        }
-
-        return $m[3];
+        $path=realpath($path);
+        $extension=pathinfo($path,PATHINFO_EXTENSION);
+        if(in_array($extension,['md','html','htm'])){
+            return pathinfo(realpath($path),PATHINFO_FILENAME);
+	  	}
+	  	return preg_replace('/^.+[\\\\\\/]/', '', $path);
     }
 
     /**

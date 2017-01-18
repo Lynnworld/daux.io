@@ -196,7 +196,7 @@ class Generator implements \Todaymade\Daux\Format\Base\Generator, LiveGenerator
                         if ($index_pages) {
                             $this->indexed_pages[] = [
                                 'title' => $node->getTitle(),
-                                'text' => utf8_encode($this->strip_html_tags($generated->getPureContent())),
+                                'text' => (strip_tags($generated->getPureContent())),
                                 'tags' =>  '',
                                 'url' => $node->getUrl(),
                             ];
